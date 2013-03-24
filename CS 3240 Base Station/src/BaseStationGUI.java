@@ -1,4 +1,6 @@
 import java.awt.BorderLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.JLabel;
 
 import javax.swing.WindowConstants;
@@ -19,6 +21,10 @@ import javax.swing.SwingUtilities;
 */
 public class BaseStationGUI extends javax.swing.JFrame {
 	private JLabel lightSensorLabel;
+	private JLabel ultrasonicSensorLabel;
+	private JLabel locationLabel;
+	private JLabel touchSensorLabel;
+	private JLabel soundSensorLabel;
 
 	/**
 	* Auto-generated main method to display this JFrame
@@ -29,6 +35,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 				BaseStationGUI inst = new BaseStationGUI();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
+				BaseStationGUIController controller = new BaseStationGUIController(inst);
 			}
 		});
 	}
@@ -42,18 +49,61 @@ public class BaseStationGUI extends javax.swing.JFrame {
 		try {
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
+			this.addKeyListener(new KeyAdapter() {
+				public void keyPressed(KeyEvent evt) {
+					thisKeyPressed(evt);
+				}
+			});
 			{
 				lightSensorLabel = new JLabel();
 				getContentPane().add(lightSensorLabel);
 				lightSensorLabel.setText("Light:");
 				lightSensorLabel.setBounds(28, 33, 56, 16);
 			}
+			{
+				soundSensorLabel = new JLabel();
+				getContentPane().add(soundSensorLabel);
+				soundSensorLabel.setText("Sound:");
+				soundSensorLabel.setBounds(28, 61, 37, 16);
+			}
+			{
+				ultrasonicSensorLabel = new JLabel();
+				getContentPane().add(ultrasonicSensorLabel);
+				ultrasonicSensorLabel.setText("Ultrasonic:");
+				ultrasonicSensorLabel.setBounds(28, 89, 56, 16);
+			}
+			{
+				touchSensorLabel = new JLabel();
+				getContentPane().add(touchSensorLabel);
+				touchSensorLabel.setText("Touch:");
+				touchSensorLabel.setBounds(28, 117, 37, 16);
+			}
+			{
+				locationLabel = new JLabel();
+				getContentPane().add(locationLabel);
+				locationLabel.setText("Location:");
+				locationLabel.setBounds(28, 149, 49, 16);
+			}
 			pack();
-			this.setSize(413, 320);
+			this.setSize(585, 435);
 		} catch (Exception e) {
 		    //add your error handling code here
 			e.printStackTrace();
 		}
+	}
+	
+	
+	/*
+	 * Handle the keyboard input (up, down, left, right)
+	 * 
+	 */
+	private void thisKeyPressed(KeyEvent evt) {
+		System.out.println("this.keyPressed, event="+evt);
+
+		
+		
+		
+		
 	}
 
 }
