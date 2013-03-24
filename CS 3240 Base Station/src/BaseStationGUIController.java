@@ -40,6 +40,7 @@ public class BaseStationGUIController {
 	            break;
 	        default : 
 	        	//Don't log anything?
+	        	break;
 	     }		
 		
 	    //2. Log the current command in the command sequence log
