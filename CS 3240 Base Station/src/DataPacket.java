@@ -2,7 +2,7 @@
 public class DataPacket {
 
 	private byte opcode;
-	private int[] data = new int[6];
+	private byte[] data = new byte[24];
 	private byte end;
 	private short checksum;
 	
@@ -14,17 +14,12 @@ public class DataPacket {
 		this.opcode = (byte) opcode;
 	}
 	
-	public int[] getData() {
+	public byte[] getData() {
 		return data;
 	}
 	
-	public void setData(int data0, int data1, int data2, int data3, int data4, int data5) {
-		data[0]=data0;
-		data[1]=data1;
-		data[2]=data2;
-		data[3]=data3;
-		data[4]=data4;
-		data[5]=data5;
+	public void setData(byte[] byteArray) {
+		data = byteArray.clone();
 	}
 	
 	public int getChecksum() {
@@ -94,7 +89,7 @@ public class DataPacket {
 	public static void main(String[] args){
 		DataPacket test = new DataPacket();
 		test.setOpcode(1);
-		test.setData(1, 3, 1, 3, 1, 3);
+		//test.setData(1, 3, 1, 3, 1, 3);
 		test.setEnd(0);
 		test.calculateChecksum();
 		System.out.println(test.toString());

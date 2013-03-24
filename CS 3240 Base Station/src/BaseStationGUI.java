@@ -25,6 +25,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	private JLabel locationLabel;
 	private JLabel touchSensorLabel;
 	private JLabel soundSensorLabel;
+	private BaseStationGUIController controller;
 
 	/**
 	* Auto-generated main method to display this JFrame
@@ -35,7 +36,6 @@ public class BaseStationGUI extends javax.swing.JFrame {
 				BaseStationGUI inst = new BaseStationGUI();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
-				BaseStationGUIController controller = new BaseStationGUIController(inst);
 			}
 		});
 	}
@@ -47,6 +47,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	
 	private void initGUI() {
 		try {
+			controller = new BaseStationGUIController(this);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
 			this.addKeyListener(new KeyAdapter() {
@@ -100,9 +101,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	private void thisKeyPressed(KeyEvent evt) {
 		System.out.println("this.keyPressed, event="+evt);
 
-		
-		
-		
+		controller.KeyboardMovementHandler(evt.getKeyCode());
 		
 	}
 
