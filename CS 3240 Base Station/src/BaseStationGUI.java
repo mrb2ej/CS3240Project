@@ -50,6 +50,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	
 	private void initGUI() {
 		try {
+			this.setFocusable(true);
 			controller = new BaseStationGUIController(this);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
@@ -58,47 +59,52 @@ public class BaseStationGUI extends javax.swing.JFrame {
 					thisKeyPressed(evt);
 				}
 			});
+			this.addKeyListener(new KeyAdapter() {
+				public void keyReleased(KeyEvent evt) {
+					thisKeyReleased(evt);
+				}
+			});
 			{
 				lightSensorLabel = new JLabel();
 				getContentPane().add(lightSensorLabel);
 				lightSensorLabel.setText("Light:");
-				lightSensorLabel.setBounds(28, 33, 56, 16);
+				lightSensorLabel.setBounds(28, 33, 122, 16);
 			}
 			{
 				soundSensorLabel = new JLabel();
 				getContentPane().add(soundSensorLabel);
 				soundSensorLabel.setText("Sound:");
-				soundSensorLabel.setBounds(28, 61, 37, 16);
+				soundSensorLabel.setBounds(28, 61, 122, 16);
 			}
 			{
 				ultrasonicSensorLabel = new JLabel();
 				getContentPane().add(ultrasonicSensorLabel);
 				ultrasonicSensorLabel.setText("Ultrasonic:");
-				ultrasonicSensorLabel.setBounds(28, 89, 56, 16);
+				ultrasonicSensorLabel.setBounds(28, 89, 137, 16);
 			}
 			{
 				touchSensorLabel = new JLabel();
 				getContentPane().add(touchSensorLabel);
 				touchSensorLabel.setText("Touch:");
-				touchSensorLabel.setBounds(28, 117, 37, 16);
+				touchSensorLabel.setBounds(28, 117, 137, 16);
 			}
 			{
 				locationLabel = new JLabel();
 				getContentPane().add(locationLabel);
 				locationLabel.setText("Location:");
-				locationLabel.setBounds(28, 149, 49, 16);
+				locationLabel.setBounds(28, 149, 122, 16);
 			}
 			{
 				recordSequenceButton = new JButton();
 				getContentPane().add(recordSequenceButton);
 				recordSequenceButton.setText("Record Sequence");
-				recordSequenceButton.setBounds(165, 240, 105, 23);
+				recordSequenceButton.setBounds(137, 240, 133, 23);
 			}
 			{
 				uploadSequenceButton = new JButton();
 				getContentPane().add(uploadSequenceButton);
 				uploadSequenceButton.setText("Upload Sequence");
-				uploadSequenceButton.setBounds(288, 240, 106, 23);
+				uploadSequenceButton.setBounds(287, 240, 129, 23);
 			}
 			pack();
 			this.setSize(585, 435);
@@ -114,10 +120,18 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	 * 
 	 */
 	private void thisKeyPressed(KeyEvent evt) {
-		System.out.println("this.keyPressed, event="+evt);
+		//System.out.println("this.keyPressed, event="+evt);
 
-		controller.KeyboardMovementHandler(evt.getKeyCode());
+		controller.KeyboardMovementHandler(evt.getKeyCode(), false);
 		
 	}
 
+
+	private void thisKeyReleased(KeyEvent evt) {
+		//System.out.println("this.keyReleased, event="+evt);
+
+		controller.KeyboardMovementHandler(evt.getKeyCode(), true);
+		
+	}
+	
 }
