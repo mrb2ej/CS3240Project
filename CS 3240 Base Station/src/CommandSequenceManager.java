@@ -14,4 +14,25 @@ public class CommandSequenceManager {
 	public CommandSequenceManager(){
 		
 	}
+	
+	/*
+	 * Add the given packet to the command sequence log
+	 */
+	public boolean log(DataPacket packet){
+		/*
+		 * Not implemented in initial evolutionary prototype 
+		 */
+		
+		
+		return true;
+	}
+	
+	
+	/*
+	 * Save the current session to disk
+	 */
+	public boolean save(){
+		
+		return true;
+	}
 }

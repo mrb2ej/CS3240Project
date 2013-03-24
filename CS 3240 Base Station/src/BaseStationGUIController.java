@@ -18,31 +18,33 @@ public class BaseStationGUIController {
 	
 	public boolean KeyboardMovementHandler(int keyCode){
 		
+		DataPacket currCommand = null;
+		
 		// 1. Check what key was pressed (up, down, left, right)
 	    switch( keyCode ) { 
 	        case KeyEvent.VK_UP:
 	            // handle up
-	        	myCommunicator.sendForwardCommand();
+	        	currCommand = myCommunicator.sendForwardCommand();
 	            break;
 	        case KeyEvent.VK_DOWN:
 	            // handle down 
-	        	myCommunicator.sendBackwardCommand();
+	        	currCommand = myCommunicator.sendBackwardCommand();
 	            break;
 	        case KeyEvent.VK_LEFT:
 	            // handle left
-	        	myCommunicator.sendLeftCommand();
+	        	currCommand = myCommunicator.sendLeftCommand();
 	            break;
 	        case KeyEvent.VK_RIGHT :
 	            // handle right
-	        	myCommunicator.sendRightCommand();
+	        	currCommand = myCommunicator.sendRightCommand();
 	            break;
-	     }
+	        default : 
+	        	//Don't log anything?
+	     }		
 		
-		
-		// 4. Store command in CommandSequence through CommandSequenceManager
-		
-		
-		
+	    //2. Log the current command in the command sequence log
+    	myCommandSequenceManager.log(currCommand);
+
 		
 		return true;
 	}

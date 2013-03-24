@@ -1,6 +1,7 @@
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 import javax.swing.WindowConstants;
@@ -22,6 +23,8 @@ import javax.swing.SwingUtilities;
 public class BaseStationGUI extends javax.swing.JFrame {
 	private JLabel lightSensorLabel;
 	private JLabel ultrasonicSensorLabel;
+	private JButton uploadSequenceButton;
+	private JButton recordSequenceButton;
 	private JLabel locationLabel;
 	private JLabel touchSensorLabel;
 	private JLabel soundSensorLabel;
@@ -84,6 +87,18 @@ public class BaseStationGUI extends javax.swing.JFrame {
 				getContentPane().add(locationLabel);
 				locationLabel.setText("Location:");
 				locationLabel.setBounds(28, 149, 49, 16);
+			}
+			{
+				recordSequenceButton = new JButton();
+				getContentPane().add(recordSequenceButton);
+				recordSequenceButton.setText("Record Sequence");
+				recordSequenceButton.setBounds(165, 240, 105, 23);
+			}
+			{
+				uploadSequenceButton = new JButton();
+				getContentPane().add(uploadSequenceButton);
+				uploadSequenceButton.setText("Upload Sequence");
+				uploadSequenceButton.setBounds(288, 240, 106, 23);
 			}
 			pack();
 			this.setSize(585, 435);
