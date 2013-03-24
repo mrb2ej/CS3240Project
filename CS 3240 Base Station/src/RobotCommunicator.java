@@ -15,21 +15,17 @@ public class RobotCommunicator {
 	}
 
 	public DataPacket sendForwardCommand() {
-
 		// Create array and initialize all data to zero
 		byte[] byteArray = new byte[5];
 		for (int i = 0; i < byteArray.length; i++) {
-			byteArray[0] = 0;
+			byteArray[i] = 0;
 		}
 
 		// Set movement forward for motor 0 and motor 1
-		byteArray[0] = 2;
-		byteArray[1] = 0;
-		byteArray[2] = 0;
-		byteArray[3] = 0;
-		byteArray[4] = 0;
+		byteArray[0] = DataPacket.MOTOR_FORWARD;
 
-		DataPacket currentPacket = new DataPacket((byte) 2, byteArray);
+		DataPacket currentPacket = new DataPacket(DataPacket.OP_MOTOR_COMMAND,
+				byteArray);
 
 		// Send that packet
 		// No idea how this is going to happen yet
@@ -38,21 +34,17 @@ public class RobotCommunicator {
 	}
 
 	public DataPacket sendBackwardCommand() {
-
 		// Create array and initialize all data to zero
 		byte[] byteArray = new byte[5];
 		for (int i = 0; i < byteArray.length; i++) {
-			byteArray[0] = 0;
+			byteArray[i] = 0;
 		}
 
 		// Set movement forward for motor 0 and motor 1
-		byteArray[0] = 4;
-		byteArray[1] = 0;
-		byteArray[2] = 0;
-		byteArray[3] = 0;
-		byteArray[4] = 0;
+		byteArray[0] = DataPacket.MOTOR_BACKWARD;
 
-		DataPacket currentPacket = new DataPacket((byte) 2, byteArray);
+		DataPacket currentPacket = new DataPacket(DataPacket.OP_MOTOR_COMMAND,
+				byteArray);
 
 		// Send that packet
 		// No idea how this is going to happen yet
@@ -64,17 +56,14 @@ public class RobotCommunicator {
 		// Create array and initialize all data to zero
 		byte[] byteArray = new byte[5];
 		for (int i = 0; i < byteArray.length; i++) {
-			byteArray[0] = 0;
+			byteArray[i] = 0;
 		}
 
 		// Set movement forward for motor 0 and motor 1
-		byteArray[0] = 6;
-		byteArray[1] = 0;
-		byteArray[2] = 0;
-		byteArray[3] = 0;
-		byteArray[4] = 0;
+		byteArray[0] = DataPacket.MOTOR_LEFT;
 
-		DataPacket currentPacket = new DataPacket((byte) 2, byteArray);
+		DataPacket currentPacket = new DataPacket(DataPacket.OP_MOTOR_COMMAND,
+				byteArray);
 
 		// Send that packet
 		// No idea how this is going to happen yet
@@ -86,17 +75,14 @@ public class RobotCommunicator {
 		// Create array and initialize all data to zero
 		byte[] byteArray = new byte[5];
 		for (int i = 0; i < byteArray.length; i++) {
-			byteArray[0] = 0;
+			byteArray[i] = 0;
 		}
 
 		// Set movement forward for motor 0 and motor 1
-		byteArray[0] = 8;
-		byteArray[1] = 0;
-		byteArray[2] = 0;
-		byteArray[3] = 0;
-		byteArray[4] = 0;
+		byteArray[0] = DataPacket.MOTOR_RIGHT;
 
-		DataPacket currentPacket = new DataPacket((byte) 2, byteArray);
+		DataPacket currentPacket = new DataPacket(DataPacket.OP_MOTOR_COMMAND,
+				byteArray);
 
 		// Send that packet
 		// No idea how this is going to happen yet
