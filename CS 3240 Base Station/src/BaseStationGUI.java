@@ -4,10 +4,12 @@ import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.text.DefaultCaret;
 
 
 /**
@@ -25,6 +27,7 @@ import javax.swing.SwingUtilities;
 public class BaseStationGUI extends javax.swing.JFrame {
 	private JLabel lightSensorLabel;
 	private JLabel touchData;
+	private JScrollPane jScrollPane1;
 	private JLabel sensorPanelLabel;
 	private JPanel controlOutputPanel;
 	private JLabel rightArrowLabel;
@@ -180,9 +183,17 @@ public class BaseStationGUI extends javax.swing.JFrame {
 				uploadSequenceButton.setBounds(414, 251, 144, 23);
 			}
 			{
-				commandSequenceLog = new JTextArea();
-				getContentPane().add(commandSequenceLog);
-				commandSequenceLog.setBounds(12, 279, 545, 106);
+				jScrollPane1 = new JScrollPane();
+				getContentPane().add(jScrollPane1);
+				jScrollPane1.setBounds(12, 279, 545, 106);
+				{
+					commandSequenceLog = new JTextArea();
+					jScrollPane1.setViewportView(commandSequenceLog);
+					commandSequenceLog.setBounds(12, 279, 545, 106);
+					commandSequenceLog.setEditable(false);
+					DefaultCaret caret = (DefaultCaret)commandSequenceLog.getCaret();
+					caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+				}
 			}
 			{
 				recordingLogLabel = new JLabel();
@@ -250,6 +261,11 @@ public class BaseStationGUI extends javax.swing.JFrame {
 		//System.out.println("this.keyReleased, event="+evt);
 
 		controller.KeyboardMovementHandler(evt.getKeyCode(), true);
+		
+	}
+	
+	public void displayCommand(String command){
+		commandSequenceLog.append(command + "\n");
 		
 	}
 	

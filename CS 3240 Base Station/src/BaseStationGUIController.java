@@ -107,11 +107,10 @@ public class BaseStationGUIController {
 		}
 
 		
-		
-		
-		
 		// 2. Log the current command in the command sequence log
-		myCommandSequenceManager.log(currCommand);
+		if(myCommandSequenceManager.log(currCommand)){
+			myGUI.displayCommand(currCommand.getMovementCommandName());
+		}
 
 		return true;
 	}
