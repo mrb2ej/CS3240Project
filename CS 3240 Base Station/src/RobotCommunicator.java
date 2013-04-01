@@ -1,5 +1,7 @@
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
+
 
 import lejos.pc.comm.NXTComm;
 import lejos.pc.comm.NXTConnector;
@@ -15,16 +17,19 @@ import lejos.pc.comm.NXTConnector;
 public class RobotCommunicator {
 
 	private NXTConnector conn;
+	private InputStream inStream;
 
 	public RobotCommunicator() {
 
 		conn = new NXTConnector();
-		boolean connected = conn.connectTo(NXTComm.RAW);
+		boolean connected = conn.connectTo();
 		if (!connected) {
 			//Can't connect
 			System.out.println("Can't connect");
 			return;
 		}
+		
+		inStream = conn.getInputStream();
 		
 	}
 
@@ -55,6 +60,7 @@ public class RobotCommunicator {
 		
 		try {
 			outStream.write(message);
+			outStream.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return false;
@@ -62,5 +68,23 @@ public class RobotCommunicator {
 		*/
 		return true;
 	}
+	
+	private byte[] receiveDataFromRobot(){
+	
+		byte[] message = new byte[7];
+		
+		try {
+			inStream.read(message);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return message;
+		}
+		return message;
+		
+	}
+	
+	
+	
+	
 
 }

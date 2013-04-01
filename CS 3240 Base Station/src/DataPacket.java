@@ -70,10 +70,10 @@ public class DataPacket {
 			case MOTOR_DECREASE_SPEED:
 				return "Decrease Speed";
 			default:
-				return null;
+				return "";
 			}
 		}else{
-			return null;
+			return "";
 		}
 
 	}
