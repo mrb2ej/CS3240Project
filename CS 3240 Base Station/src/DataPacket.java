@@ -2,6 +2,7 @@ public class DataPacket {
 	byte opcode;
 	byte[] data;
 	byte checkSum;
+	byte readcheckSum;
 
 	public DataPacket(byte op, byte[] packetData, byte chkSum) {
 		opcode = op;
@@ -13,6 +14,13 @@ public class DataPacket {
 		opcode = op;
 		data = packetData.clone();
 		checkSum = calcChkSum();
+	}
+	
+	public DataPacket(byte[] packetData) {
+		opcode = packetData[0];
+		readcheckSum = packetData[6];
+		data = new byte[5];
+		data[0] = packetData[1]; data[1] = packetData[2]; data[2] = packetData[3]; data[3] = packetData[4]; data[4] = packetData[5];
 	}
 
 	public byte[] getAsByteArray() {
