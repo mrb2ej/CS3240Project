@@ -2,6 +2,7 @@ public class DataPacket {
 	byte opcode;
 	byte[] data;
 	byte checkSum;
+	byte readcheckSum;
 
 	public DataPacket(byte op, byte[] packetData, byte chkSum) {
 		opcode = op;
@@ -21,7 +22,7 @@ public class DataPacket {
 		for (int x = 0; x < data.length; x++) {
 			packet[x + 1] = data[x];
 		}
-		packet[6] = checkSum;
+		packet[6] = readcheckSum;
 		return packet;
 	}
 
