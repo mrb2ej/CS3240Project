@@ -32,8 +32,12 @@ public class DataPacket {
 		packet[6] = checkSum;
 		return packet;
 	}
+	
+	public boolean check() {
+		return calcChkSum()==readcheckSum;
+	}
 
-	public byte calcChkSum() {
+	private byte calcChkSum() {
 		byte total = getOnes(opcode);
 		for (int x = 0; x < data.length; x++) {
 			total += getOnes(data[x]);
