@@ -25,7 +25,7 @@ public class BaseStationGUIController {
 
 	public void terminateRobot() {
 		DataPacket currCommand = myCommunicator
-				.sendMovementCommand(DataPacket.ERROR_DISCONNECTED);
+				.sendErrorCommand(DataPacket.ERROR_DISCONNECTED);
 
 		LogAndDisplay(currCommand);
 	}

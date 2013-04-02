@@ -35,7 +35,7 @@ public class RobotCommunicator {
 
 	public DataPacket sendMovementCommand(byte opcode) {
 
-		System.out.println("Sending command with opcode: " + opcode);
+		System.out.println("Sending movement command with opcode: " + opcode);
 
 		// Create array and initialize all data to zero
 		byte[] byteArray = new byte[5];
@@ -52,6 +52,27 @@ public class RobotCommunicator {
 		sendDataToRobot(currentPacket.getAsByteArray());
 
 		return currentPacket;
+	}
+	
+	public DataPacket sendErrorCommand(byte opcode){
+		System.out.println("Sending error command with opcode: " + opcode);
+
+		// Create array and initialize all data to zero
+		byte[] byteArray = new byte[5];
+		for (int i = 0; i < byteArray.length; i++) {
+			byteArray[i] = 0;
+		}
+
+		// Set movement forward for motor 0 and motor 1
+		byteArray[0] = opcode;
+
+		DataPacket currentPacket = new DataPacket(DataPacket.OP_ERROR, byteArray);
+
+		// Send that packet
+		sendDataToRobot(currentPacket.getAsByteArray());
+
+		return currentPacket;
+		
 	}
 	
 	

@@ -16,13 +16,6 @@ public class DataPacket {
 		checkSum = calcChkSum();
 	}
 	
-	public DataPacket(byte[] packetData) {
-		opcode = packetData[0];
-		readcheckSum = packetData[6];
-		data = new byte[5];
-		data[0] = packetData[1]; data[1] = packetData[2]; data[2] = packetData[3]; data[3] = packetData[4]; data[4] = packetData[5];
-	}
-
 	public DataPacket(byte[] packet) {
 		opcode = packet[0];
 		data = new byte[5];
@@ -44,7 +37,7 @@ public class DataPacket {
 		return calcChkSum()==readcheckSum;
 	}
 
-	private byte calcChkSum() {
+	public byte calcChkSum() {
 		byte total = getOnes(opcode);
 		for (int x = 0; x < data.length; x++) {
 			total += getOnes(data[x]);
