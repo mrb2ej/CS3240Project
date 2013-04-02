@@ -3,15 +3,17 @@ import java.awt.event.KeyEvent;
 public class BaseStationGUIController {
 
 	CommandSequenceManager myCommandSequenceManager = new CommandSequenceManager();
-	TelemetryDataManager myTelemetryDataManager = new TelemetryDataManager();
 	RobotCommunicator myCommunicator = new RobotCommunicator();
 	BaseStationGUI myGUI;
 
-	// 0 - up
-	// 1 - down
-	// 2 -left
-	// 3 - right
-
+	private static final int UP_KEY = 0;
+	private static final int DOWN_KEY = 1;
+	private static final int LEFT_KEY = 2;
+	private static final int RIGHT_KEY = 3;
+	
+	private static final int DOT_KEY = 46;
+	private static final int SLASH_KEY = 47;
+	
 	boolean[] movementKeysUp = new boolean[4];
 
 	public BaseStationGUIController(BaseStationGUI guiInstance) {
@@ -42,85 +44,85 @@ public class BaseStationGUIController {
 
 		DataPacket currCommand = null;
 
-		// 1. Check what key was pressed (up, down, left, right)
+		// Check what key was pressed 
 		switch (keyCode) {
 		case KeyEvent.VK_UP:
 			// handle up
 			if (keyReleased) {
-				if (!movementKeysUp[0]) {
+				if (!movementKeysUp[UP_KEY]) {
 					// Movement key has been lifted
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_STOP_FORWARD);
-					movementKeysUp[0] = true;
+					movementKeysUp[UP_KEY] = true;
 				}
 			} else {
-				if (movementKeysUp[0]) {
+				if (movementKeysUp[UP_KEY]) {
 					// Movement key has been pressed
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_FORWARD);
-					movementKeysUp[0] = false;
+					movementKeysUp[UP_KEY] = false;
 				}
 			}
 			break;
 		case KeyEvent.VK_DOWN:
 			// handle down
 			if (keyReleased) {
-				if (!movementKeysUp[1]) {
+				if (!movementKeysUp[DOWN_KEY]) {
 					// Movement key has been lifted
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_STOP_BACKWARD);
-					movementKeysUp[1] = true;
+					movementKeysUp[DOWN_KEY] = true;
 				}
 			} else {
-				if (movementKeysUp[1]) {
+				if (movementKeysUp[DOWN_KEY]) {
 					// Movement key has been pressed
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_BACKWARD);
-					movementKeysUp[1] = false;
+					movementKeysUp[DOWN_KEY] = false;
 				}
 			}
 			break;
 		case KeyEvent.VK_LEFT:
 			// handle left
 			if (keyReleased) {
-				if (!movementKeysUp[2]) {
+				if (!movementKeysUp[LEFT_KEY]) {
 					// Movement key has been lifted
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_STOP_LEFT);
-					movementKeysUp[2] = true;
+					movementKeysUp[LEFT_KEY] = true;
 				}
 			} else {
-				if (movementKeysUp[2]) {
+				if (movementKeysUp[LEFT_KEY]) {
 					// Movement key has been pressed
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_LEFT);
-					movementKeysUp[2] = false;
+					movementKeysUp[LEFT_KEY] = false;
 				}
 			}
 			break;
 		case KeyEvent.VK_RIGHT:
 			// handle right
 			if (keyReleased) {
-				if (!movementKeysUp[3]) {
+				if (!movementKeysUp[RIGHT_KEY]) {
 					// Movement key has been lifted
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_STOP_RIGHT);
-					movementKeysUp[3] = true;
+					movementKeysUp[RIGHT_KEY] = true;
 				}
 			} else {
-				if (movementKeysUp[3]) {
+				if (movementKeysUp[RIGHT_KEY]) {
 					// Movement key has been pressed
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_RIGHT);
-					movementKeysUp[3] = false;
+					movementKeysUp[RIGHT_KEY] = false;
 				}
 			}
 			break;
-		case (46):
+		case DOT_KEY:
 			currCommand = myCommunicator
 					.sendMovementCommand(DataPacket.MOTOR_DECREASE_SPEED);
 			break;
-		case (47):
+		case SLASH_KEY:
 			currCommand = myCommunicator
 					.sendMovementCommand(DataPacket.MOTOR_INCREASE_SPEED);
 			break;
@@ -129,7 +131,7 @@ public class BaseStationGUIController {
 			break;
 		}
 
-		// 2. Log the current command in the command sequence log
+
 		LogAndDisplay(currCommand);
 
 		return true;

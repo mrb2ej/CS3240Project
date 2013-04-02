@@ -78,6 +78,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	private void initGUI() {
 		try {
 			this.setFocusable(true);
+			this.setAlwaysOnTop(true);
 			controller = new BaseStationGUIController(this);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
@@ -281,48 +282,34 @@ public class BaseStationGUI extends javax.swing.JFrame {
 			pack();
 			this.setSize(585, 435);
 		} catch (Exception e) {
-		    //add your error handling code here
 			e.printStackTrace();
 		}
 	}
 	
 	
-	/*
-	 * Handle the keyboard input (up, down, left, right)
-	 * 
-	 */
-	private void thisKeyPressed(KeyEvent evt) {
-		//System.out.println("this.keyPressed, event="+evt);
 
+	/*
+	 * GUI LISTENERS:
+	 */
+	
+	private void thisKeyPressed(KeyEvent evt) {
 		controller.KeyboardMovementHandler(evt.getKeyCode(), false);
-		
 	}
 
-
 	private void thisKeyReleased(KeyEvent evt) {
-		//System.out.println("this.keyReleased, event="+evt);
-
 		controller.KeyboardMovementHandler(evt.getKeyCode(), true);
-		
 	}
 	
 	public void displayCommand(String command){
 		commandSequenceLog.append(command + "\n");
-		
 	}
 	
 	private void terminateButtonMouseClicked(MouseEvent evt) {
-		System.out.println("terminateButton.mouseClicked, event="+evt);
-		
 		controller.terminateRobot();
-		
 	}
 	
 	private void stopButtonMouseClicked(MouseEvent evt) {
-		System.out.println("stopButton.mouseClicked, event="+evt);
-		
 		controller.stopRobot();
-		
 	}
 
 }

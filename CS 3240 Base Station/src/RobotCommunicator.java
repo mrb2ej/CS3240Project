@@ -18,6 +18,7 @@ public class RobotCommunicator {
 
 	private NXTConnector conn;
 	private InputStream inStream;
+	private TelemetryDataManager telemDataManager;
 
 	public RobotCommunicator() {
 
@@ -26,10 +27,16 @@ public class RobotCommunicator {
 		if (!connected) {
 			//Can't connect
 			System.out.println("Can't connect");
+			
+			// TODO: Attempt to reconnect
+			
 			return;
 		}
+	
 		
+		// Setup the telemetry data manager that will handle all input from the robot
 		inStream = conn.getInputStream();
+		telemDataManager = new TelemetryDataManager(inStream);
 		
 	}
 
@@ -43,18 +50,17 @@ public class RobotCommunicator {
 			byteArray[i] = 0;
 		}
 
-		// Set movement forward for motor 0 and motor 1
-		byteArray[0] = opcode;
 
+		byteArray[0] = opcode;
 		DataPacket currentPacket = new DataPacket(DataPacket.OP_MOTOR_COMMAND, byteArray);
 
-		// Send that packet
 		sendDataToRobot(currentPacket.getAsByteArray());
 
 		return currentPacket;
 	}
 	
 	public DataPacket sendErrorCommand(byte opcode){
+
 		System.out.println("Sending error command with opcode: " + opcode);
 
 		// Create array and initialize all data to zero
@@ -63,32 +69,17 @@ public class RobotCommunicator {
 			byteArray[i] = 0;
 		}
 
-		// Set movement forward for motor 0 and motor 1
 		byteArray[0] = opcode;
-
 		DataPacket currentPacket = new DataPacket(DataPacket.OP_ERROR, byteArray);
 
-		// Send that packet
+
 		sendDataToRobot(currentPacket.getAsByteArray());
 
 		return currentPacket;
 		
 	}
 	
-	
-	public DataPacket receiveCommand(){
 		
-		DataPacket packet = new DataPacket(receiveDataFromRobot());
-		
-		//Ensure the checksum is correct
-		if(packet.calcChkSum() != packet.checkSum){
-			//The checksum doesn't match, send an error to the robot
-		}
-
-		
-		return packet;
-	}
-	
 	private boolean sendDataToRobot(byte[] message){
 		
 		OutputStream outStream = conn.getOutputStream();
@@ -104,19 +95,6 @@ public class RobotCommunicator {
 		return true;
 	}
 	
-	private byte[] receiveDataFromRobot(){
-	
-		byte[] message = new byte[7];
-		
-		try {
-			inStream.read(message);
-		} catch (IOException e) {
-			e.printStackTrace();
-			return message;
-		}
-		return message;
-		
-	}
 	
 	
 	
