@@ -54,8 +54,22 @@ public class RobotCommunicator {
 		return currentPacket;
 	}
 	
+	
+	public DataPacket receiveCommand(){
+		
+		DataPacket packet = new DataPacket(receiveDataFromRobot());
+		
+		//Ensure the checksum is correct
+		if(packet.calcChkSum() != packet.checkSum){
+			//The checksum doesn't match, send an error to the robot
+		}
+
+		
+		return packet;
+	}
+	
 	private boolean sendDataToRobot(byte[] message){
-		/*
+		
 		OutputStream outStream = conn.getOutputStream();
 		
 		try {
@@ -65,7 +79,7 @@ public class RobotCommunicator {
 			e.printStackTrace();
 			return false;
 		}
-		*/
+		
 		return true;
 	}
 	

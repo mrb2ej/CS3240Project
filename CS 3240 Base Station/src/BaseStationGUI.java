@@ -1,6 +1,8 @@
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,6 +29,10 @@ import javax.swing.text.DefaultCaret;
 public class BaseStationGUI extends javax.swing.JFrame {
 	private JLabel lightSensorLabel;
 	private JLabel touchData;
+	private JButton stopButton;
+	private JButton terminateButton;
+	private JLabel speed;
+	private JLabel speedLabel;
 	private JScrollPane jScrollPane1;
 	private JLabel sensorPanelLabel;
 	private JPanel controlOutputPanel;
@@ -236,6 +242,42 @@ public class BaseStationGUI extends javax.swing.JFrame {
 					downArrowLabel.setFont(new java.awt.Font("Segoe UI",1,72));
 				}
 			}
+			{
+				speedLabel = new JLabel();
+				getContentPane().add(speedLabel);
+				speedLabel.setText("Speed (%):");
+				speedLabel.setBounds(403, 174, 59, 16);
+			}
+			{
+				speed = new JLabel();
+				getContentPane().add(speed);
+				speed.setText("0");
+				speed.setBounds(474, 174, 52, 16);
+			}
+			{
+				terminateButton = new JButton();
+				getContentPane().add(terminateButton);
+				terminateButton.setText("Terminate");
+				terminateButton.setBounds(246, 85, 107, 48);
+				terminateButton.setBackground(new java.awt.Color(255,0,0));
+				terminateButton.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent evt) {
+						terminateButtonMouseClicked(evt);
+					}
+				});
+			}
+			{
+				stopButton = new JButton();
+				getContentPane().add(stopButton);
+				stopButton.setText("Stop");
+				stopButton.setBounds(246, 28, 107, 46);
+				stopButton.setBackground(new java.awt.Color(255,128,0));
+				stopButton.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent evt) {
+						stopButtonMouseClicked(evt);
+					}
+				});
+			}
 			pack();
 			this.setSize(585, 435);
 		} catch (Exception e) {
@@ -269,4 +311,18 @@ public class BaseStationGUI extends javax.swing.JFrame {
 		
 	}
 	
+	private void terminateButtonMouseClicked(MouseEvent evt) {
+		System.out.println("terminateButton.mouseClicked, event="+evt);
+		
+		controller.terminateRobot();
+		
+	}
+	
+	private void stopButtonMouseClicked(MouseEvent evt) {
+		System.out.println("stopButton.mouseClicked, event="+evt);
+		
+		controller.stopRobot();
+		
+	}
+
 }

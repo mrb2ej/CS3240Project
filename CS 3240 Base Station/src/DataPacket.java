@@ -23,6 +23,13 @@ public class DataPacket {
 		data[0] = packetData[1]; data[1] = packetData[2]; data[2] = packetData[3]; data[3] = packetData[4]; data[4] = packetData[5];
 	}
 
+	public DataPacket(byte[] packet) {
+		opcode = packet[0];
+		data = new byte[5];
+		System.arraycopy(packet, 1, data, 0, 5);
+		checkSum = packet[6];
+	}
+
 	public byte[] getAsByteArray() {
 		byte[] packet = new byte[7];
 		packet[0] = opcode;
@@ -84,7 +91,15 @@ public class DataPacket {
 			default:
 				return "";
 			}
-		}else{
+		} else if (opcode == OP_ERROR) {
+			switch (data[0]) {
+			case ERROR_DISCONNECTED:
+				return "Terminate";
+			default:
+				return "";
+			}
+
+		} else {
 			return "";
 		}
 

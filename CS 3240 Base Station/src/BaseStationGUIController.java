@@ -23,6 +23,21 @@ public class BaseStationGUIController {
 
 	}
 
+	public void terminateRobot() {
+		DataPacket currCommand = myCommunicator
+				.sendMovementCommand(DataPacket.ERROR_DISCONNECTED);
+
+		LogAndDisplay(currCommand);
+	}
+
+	public void stopRobot() {
+		DataPacket currCommand = myCommunicator
+				.sendMovementCommand(DataPacket.MOTOR_STOP);
+
+		LogAndDisplay(currCommand);
+
+	}
+
 	public boolean KeyboardMovementHandler(int keyCode, boolean keyReleased) {
 
 		DataPacket currCommand = null;
@@ -101,21 +116,37 @@ public class BaseStationGUIController {
 				}
 			}
 			break;
+		case (46):
+			currCommand = myCommunicator
+					.sendMovementCommand(DataPacket.MOTOR_DECREASE_SPEED);
+			break;
+		case (47):
+			currCommand = myCommunicator
+					.sendMovementCommand(DataPacket.MOTOR_INCREASE_SPEED);
+			break;
 		default:
 			// Don't log anything?
 			break;
 		}
 
-		
 		// 2. Log the current command in the command sequence log
-		if(myCommandSequenceManager.log(currCommand)){
-			if(!((currCommand.getMovementCommandName()).equals(""))){
-				myGUI.displayCommand(currCommand.getMovementCommandName());	
-			}
-			
-		}
+		LogAndDisplay(currCommand);
 
 		return true;
+	}
+	
+	private boolean LogAndDisplay(DataPacket currCommand){
+		
+		if (currCommand != null) {
+			if (myCommandSequenceManager.log(currCommand)) {
+				if (!((currCommand.getMovementCommandName()).equals(""))) {
+					myGUI.displayCommand(currCommand.getMovementCommandName());
+				}
+			}
+		}
+		
+		return true;
+		
 	}
 
 }
