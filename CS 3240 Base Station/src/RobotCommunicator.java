@@ -19,24 +19,36 @@ public class RobotCommunicator {
 	private NXTConnector conn;
 	private InputStream inStream;
 	private TelemetryDataManager telemDataManager;
+	
+	private static final int OPCODE_REGION = 0;
+	private static final int PACKET_DATA_REGION_SIZE = 5;
 
-	public RobotCommunicator() {
+	public RobotCommunicator(BaseStationGUIController guiController) {
 
 		conn = new NXTConnector();
 		boolean connected = conn.connectTo();
 		if (!connected) {
 			//Can't connect
-			System.out.println("Can't connect");
+			System.out.println("ERROR: CANNOT CONNECT TO ROBOT");
 			
 			// TODO: Attempt to reconnect
 			
 			return;
+		}else{
+			System.out.println("CONNECTED! ATTEMPTING TO GET INPUT STREAM");
 		}
 	
 		
 		// Setup the telemetry data manager that will handle all input from the robot
 		inStream = conn.getInputStream();
-		telemDataManager = new TelemetryDataManager(inStream);
+		
+		if(inStream != null){
+			System.out.println("RECEIVED INPUT STREAM FROM ROBOT");
+			telemDataManager = new TelemetryDataManager(inStream, guiController);
+		}else{
+			System.out.println("ERROR: CANNOT GET INPUT STREAM FROM ROBOT");
+		}
+		
 		
 	}
 
@@ -45,13 +57,13 @@ public class RobotCommunicator {
 		System.out.println("Sending movement command with opcode: " + opcode);
 
 		// Create array and initialize all data to zero
-		byte[] byteArray = new byte[5];
+		byte[] byteArray = new byte[PACKET_DATA_REGION_SIZE];
 		for (int i = 0; i < byteArray.length; i++) {
 			byteArray[i] = 0;
 		}
 
-
-		byteArray[0] = opcode;
+		
+		byteArray[OPCODE_REGION] = opcode;
 		DataPacket currentPacket = new DataPacket(DataPacket.OP_MOTOR_COMMAND, byteArray);
 
 		sendDataToRobot(currentPacket.getAsByteArray());
@@ -64,12 +76,12 @@ public class RobotCommunicator {
 		System.out.println("Sending error command with opcode: " + opcode);
 
 		// Create array and initialize all data to zero
-		byte[] byteArray = new byte[5];
+		byte[] byteArray = new byte[PACKET_DATA_REGION_SIZE];
 		for (int i = 0; i < byteArray.length; i++) {
 			byteArray[i] = 0;
 		}
 
-		byteArray[0] = opcode;
+		byteArray[OPCODE_REGION] = opcode;
 		DataPacket currentPacket = new DataPacket(DataPacket.OP_ERROR, byteArray);
 
 
@@ -88,7 +100,8 @@ public class RobotCommunicator {
 			outStream.write(message);
 			outStream.flush();
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("ERROR: COULD NOT SEND PACKET TO ROBOT");
 			return false;
 		}
 		

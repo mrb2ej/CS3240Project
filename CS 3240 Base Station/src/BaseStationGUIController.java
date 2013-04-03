@@ -3,7 +3,7 @@ import java.awt.event.KeyEvent;
 public class BaseStationGUIController {
 
 	CommandSequenceManager myCommandSequenceManager = new CommandSequenceManager();
-	RobotCommunicator myCommunicator = new RobotCommunicator();
+	RobotCommunicator myCommunicator = new RobotCommunicator(this);
 	BaseStationGUI myGUI;
 
 	private static final int UP_KEY = 0;
@@ -137,7 +137,7 @@ public class BaseStationGUIController {
 		return true;
 	}
 	
-	private boolean LogAndDisplay(DataPacket currCommand){
+	public boolean LogAndDisplay(DataPacket currCommand){
 		
 		if (currCommand != null) {
 			if (myCommandSequenceManager.log(currCommand)) {
@@ -150,5 +150,18 @@ public class BaseStationGUIController {
 		return true;
 		
 	}
+	
+	public boolean DisplayTelemetryData(TelemetryData telemData){
+		
+		myGUI.setTouchDataText("" + telemData.getTouchSensorData());
+		myGUI.setLightDataText("" + telemData.getLightSensorData());
+		myGUI.setSoundDataText("" + telemData.getSoundSensorData());
+		myGUI.setUltrasonicDataText("" + telemData.getUltrasonicSensorData());
+		
+		
+		return true;
+	}
+	
+	
 
 }

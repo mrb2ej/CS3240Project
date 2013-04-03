@@ -16,10 +16,13 @@ import java.io.InputStream;
 public class TelemetryDataManager implements Runnable {
 
 	InputStream inStream;
+	BaseStationGUIController guiController;
+	
+	private static final int DATA_PACKET_SIZE = 7;
 		
-	public TelemetryDataManager(InputStream inStream){
+	public TelemetryDataManager(InputStream inStream, BaseStationGUIController guiController){
 		this.inStream = inStream;
-		
+		this.guiController = guiController;
 	}
 
 	@Override
@@ -42,22 +45,28 @@ public class TelemetryDataManager implements Runnable {
 		System.out.println("Received a proper command from the robot");
 		
 		//Parse out the telemetry data
+		if(packet.opcode == DataPacket.OP_SENSOR_INFORMATION){
+			TelemetryData telemData = new TelemetryData(packet.data);
+			
+			guiController.DisplayTelemetryData(telemData);
+		}
 		
-		//Display the telemetry data to the user
 		
 		return packet;
 	}
 	
 	private byte[] receiveDataFromRobot(){
 		
-		byte[] message = new byte[7];
+		byte[] message = new byte[DATA_PACKET_SIZE];
 		
 		try {
-			inStream.read(message);   //Is this a blocking call?
+			inStream.read(message);   //Blocking call
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("ERROR: COULD NOT RECEIVE PACKET TO ROBOT");
 			return message;
 		}
+		
 		return message;
 		
 	}

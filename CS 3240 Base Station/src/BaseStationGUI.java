@@ -47,7 +47,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	private JLabel ultrasonicSensorLabel;
 	private JLabel ultrasonicData;
 	private JLabel soundData;
-	private JLabel lightDataLabel;
+	private JLabel lightData;
 	private JLabel recordingLogLabel;
 	private JTextArea commandSequenceLog;
 	private JButton uploadSequenceButton;
@@ -100,10 +100,10 @@ public class BaseStationGUI extends javax.swing.JFrame {
 					locationLabel.setBounds(28, 145, 79, 16);
 				}
 				{
-					lightDataLabel = new JLabel();
-					sensorDataPanel.add(lightDataLabel);
-					lightDataLabel.setText("N/A");
-					lightDataLabel.setBounds(113, 33, 45, 16);
+					lightData = new JLabel();
+					sensorDataPanel.add(lightData);
+					lightData.setText("N/A");
+					lightData.setBounds(114, 33, 45, 16);
 				}
 				{
 					soundData = new JLabel();
@@ -288,10 +288,33 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	
 	
 
+	
+	public void setTouchDataText(String data){
+		touchData.setText("N/A");
+	}
+	
+	public void setSoundDataText(String data){
+		soundData.setText("N/A");
+	}	
+	
+	public void setLightDataText(String data){
+		lightData.setText("N/A");
+	}
+	
+	public void setUltrasonicDataText(String data){
+		ultrasonicData.setText("N/A");
+	}
+	
+	
+	
+	
+	
+	
+	
 	/*
 	 * GUI LISTENERS:
 	 */
-	
+
 	private void thisKeyPressed(KeyEvent evt) {
 		controller.KeyboardMovementHandler(evt.getKeyCode(), false);
 	}
