@@ -55,7 +55,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	private JLabel locationLabel;
 	private JLabel touchSensorLabel;
 	private JLabel soundSensorLabel;
-	private BaseStationGUIController controller;
+	private static BaseStationGUIController controller;
 
 	/**
 	* Auto-generated main method to display this JFrame
@@ -66,6 +66,8 @@ public class BaseStationGUI extends javax.swing.JFrame {
 				BaseStationGUI inst = new BaseStationGUI();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
+				controller = new BaseStationGUIController(inst);
+
 			}
 		});
 	}
@@ -79,7 +81,6 @@ public class BaseStationGUI extends javax.swing.JFrame {
 		try {
 			this.setFocusable(true);
 			this.setAlwaysOnTop(true);
-			controller = new BaseStationGUIController(this);
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			getContentPane().setLayout(null);
 			{
@@ -284,6 +285,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	

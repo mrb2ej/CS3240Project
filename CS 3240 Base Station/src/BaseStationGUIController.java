@@ -2,8 +2,8 @@ import java.awt.event.KeyEvent;
 
 public class BaseStationGUIController {
 
-	CommandSequenceManager myCommandSequenceManager = new CommandSequenceManager();
-	RobotCommunicator myCommunicator = new RobotCommunicator(this);
+	CommandSequenceManager myCommandSequenceManager;
+	RobotCommunicator myCommunicator;
 	BaseStationGUI myGUI;
 
 	private static final int UP_KEY = 0;
@@ -23,6 +23,9 @@ public class BaseStationGUIController {
 			movementKeysUp[i] = true;
 		}
 
+		myCommunicator = new RobotCommunicator(this);
+		myCommandSequenceManager = new CommandSequenceManager();
+		
 	}
 
 	public void terminateRobot() {

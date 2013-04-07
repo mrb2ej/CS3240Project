@@ -17,12 +17,17 @@ public class TelemetryDataManager implements Runnable {
 
 	InputStream inStream;
 	BaseStationGUIController guiController;
+	Thread t; 
 	
 	private static final int DATA_PACKET_SIZE = 15;
 		
 	public TelemetryDataManager(InputStream inStream, BaseStationGUIController guiController){
 		this.inStream = inStream;
 		this.guiController = guiController;
+		
+		// Create a new, second thread 
+		t = new Thread(this);  
+		t.start(); 
 	}
 
 	@Override
