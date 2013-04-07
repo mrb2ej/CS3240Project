@@ -18,7 +18,7 @@ public class TelemetryDataManager implements Runnable {
 	InputStream inStream;
 	BaseStationGUIController guiController;
 	
-	private static final int DATA_PACKET_SIZE = 7;
+	private static final int DATA_PACKET_SIZE = 15;
 		
 	public TelemetryDataManager(InputStream inStream, BaseStationGUIController guiController){
 		this.inStream = inStream;
@@ -46,7 +46,11 @@ public class TelemetryDataManager implements Runnable {
 		
 		//Parse out the telemetry data
 		if(packet.opcode == DataPacket.OP_SENSOR_INFORMATION){
-			TelemetryData telemData = new TelemetryData(packet.data);
+			TelemetryData telemData = new TelemetryData();
+			telemData.setTouchSensorData(packet.getTouchSensorData());
+			telemData.setLightSensorData(packet.getLightSensorData());
+			telemData.setSoundSensorData(packet.getSoundSensorData());
+			telemData.setUltrasonicSensorData(packet.getUltrasonicSensorData());
 			
 			guiController.DisplayTelemetryData(telemData);
 		}
@@ -63,7 +67,7 @@ public class TelemetryDataManager implements Runnable {
 			inStream.read(message);   //Blocking call
 		} catch (IOException e) {
 			//e.printStackTrace();
-			System.out.println("ERROR: COULD NOT RECEIVE PACKET TO ROBOT");
+			System.out.println("ERROR: COULD NOT RECEIVE PACKET FROM ROBOT");
 			return message;
 		}
 		

@@ -21,7 +21,7 @@ public class RobotCommunicator {
 	private TelemetryDataManager telemDataManager;
 	
 	private static final int OPCODE_REGION = 0;
-	private static final int PACKET_DATA_REGION_SIZE = 5;
+	private static final int PACKET_DATA_REGION_SIZE = 13;
 
 	public RobotCommunicator(BaseStationGUIController guiController) {
 
@@ -95,6 +95,11 @@ public class RobotCommunicator {
 	private boolean sendDataToRobot(byte[] message){
 		
 		OutputStream outStream = conn.getOutputStream();
+		
+		if(outStream == null){
+			System.out.println("ERROR: COULD NOT CREATE OUTPUT STREAM TO ROBOT");
+			return false;
+		}
 		
 		try {
 			outStream.write(message);

@@ -8,15 +8,12 @@
 public class TelemetryData {
 	
 	int lightSensorData;
-    int touchSensorData;
+    boolean touchSensorData;
     int ultrasonicSensorData;
     int soundSensorData;
 	
-	public TelemetryData(byte[] data){
-		lightSensorData = data[0];
-		touchSensorData = data[1];
-		ultrasonicSensorData = data[2];
-		soundSensorData = data[3];
+	public TelemetryData(){
+	
 	}
 
 	public int getLightSensorData() {
@@ -27,11 +24,11 @@ public class TelemetryData {
 		this.lightSensorData = lightSensorData;
 	}
 
-	public int getTouchSensorData() {
+	public boolean getTouchSensorData() {
 		return touchSensorData;
 	}
 
-	public void setTouchSensorData(int touchSensorData) {
+	public void setTouchSensorData(boolean touchSensorData) {
 		this.touchSensorData = touchSensorData;
 	}
 

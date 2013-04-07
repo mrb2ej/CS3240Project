@@ -153,7 +153,12 @@ public class BaseStationGUIController {
 	
 	public boolean DisplayTelemetryData(TelemetryData telemData){
 		
-		myGUI.setTouchDataText("" + telemData.getTouchSensorData());
+		if(telemData.getTouchSensorData()){
+			myGUI.setTouchDataText("Pressed");
+		}else{
+			myGUI.setTouchDataText("Not Pressed");
+		}
+		
 		myGUI.setLightDataText("" + telemData.getLightSensorData());
 		myGUI.setSoundDataText("" + telemData.getSoundSensorData());
 		myGUI.setUltrasonicDataText("" + telemData.getUltrasonicSensorData());
