@@ -166,7 +166,6 @@ public class BaseStationGUIController {
 		myGUI.setSoundDataText("" + telemData.getSoundSensorData());
 		myGUI.setUltrasonicDataText("" + telemData.getUltrasonicSensorData());
 		
-		
 		return true;
 	}
 	
