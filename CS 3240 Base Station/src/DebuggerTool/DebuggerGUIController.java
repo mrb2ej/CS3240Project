@@ -17,8 +17,13 @@ public class DebuggerGUIController {
 	}
 
 	public void step(){
-		communicator.step();
+		communicator.stepDebugger();
 	}
+	
+	public void stop(){
+		communicator.stopDebugger();
+	}
+	
 	
 	
 }

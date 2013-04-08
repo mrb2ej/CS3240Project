@@ -100,7 +100,7 @@ public class RobotCommunicator {
 		return sendDataToRobot(packet.getAsByteArray());
 	}
 	
-	public void step(){
+	public void stepDebugger(){
 		
 		// Create array and initialize all data to zero
 		byte[] byteArray = new byte[PACKET_DATA_REGION_SIZE];
@@ -109,6 +109,22 @@ public class RobotCommunicator {
 		}
 						
 		byteArray[OPCODE_REGION] = DataPacket.DEBUG_STEP;
+		
+		DataPacket packet = new DataPacket(DataPacket.OP_DEBUGGER_COMMAND, byteArray);
+		sendDataPacketToRobot(packet);
+		
+		
+	}
+	
+	public void stopDebugger(){
+		
+		// Create array and initialize all data to zero
+		byte[] byteArray = new byte[PACKET_DATA_REGION_SIZE];
+		for (int i = 0; i < byteArray.length; i++) {
+			byteArray[i] = 0;
+		}
+						
+		byteArray[OPCODE_REGION] = DataPacket.DEBUG_STOP;
 		
 		DataPacket packet = new DataPacket(DataPacket.OP_DEBUGGER_COMMAND, byteArray);
 		sendDataPacketToRobot(packet);

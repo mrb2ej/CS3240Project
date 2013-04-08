@@ -21,6 +21,7 @@ public class DebuggerGUI extends javax.swing.JFrame {
 
 	private JMenuItem helpMenuItem;
 	private JMenu jMenu5;
+	private JButton stopButton;
 	private JButton stepButton;
 	private JMenuItem deleteMenuItem;
 	private JSeparator jSeparator1;
@@ -71,6 +72,17 @@ public class DebuggerGUI extends javax.swing.JFrame {
 					stepButton.addMouseListener(new MouseAdapter() {
 						public void mouseClicked(MouseEvent evt) {
 							stepButtonMouseClicked(evt);
+						}
+					});
+				}
+				{
+					stopButton = new JButton();
+					getContentPane().add(stopButton);
+					stopButton.setText("Stop");
+					stopButton.setBounds(114, 172, 64, 35);
+					stopButton.addMouseListener(new MouseAdapter() {
+						public void mouseClicked(MouseEvent evt) {
+							stopButtonMouseClicked(evt);
 						}
 					});
 				}
@@ -165,6 +177,10 @@ public class DebuggerGUI extends javax.swing.JFrame {
 
 	private void stepButtonMouseClicked(MouseEvent evt) {
 		controller.step();
+	}
+	
+	private void stopButtonMouseClicked(MouseEvent evt) {
+		controller.stop();
 	}
 
 }

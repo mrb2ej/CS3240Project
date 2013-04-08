@@ -1,4 +1,5 @@
 package BaseStation;
+
 public class DataPacket
 {
 	byte opcode;
@@ -25,6 +26,17 @@ public class DataPacket
 		data = new byte[13];
 		System.arraycopy(packet, 1, data, 0, 13);
 		checkSum = packet[14];
+	}
+
+	public DataPacket()
+	{
+		opcode = 0;
+		data = new byte[13];
+		for(int x = 0; x < data.length; x++)
+		{
+			data[x] = 0;
+		}
+		checkSum = 0;
 	}
 	
 	public byte[] getAsByteArray()
@@ -75,6 +87,45 @@ public class DataPacket
 			sound += data[i];
 		}
 		return sound;
+	}
+	
+	public void setTouchSensorData(boolean touch)
+	{
+		if(touch)
+		{
+			data[0] = 1;
+		}
+		else
+		{
+			data[0] = 0;
+		}
+	}
+	
+	public void setLightSensorData(int light)
+	{
+		for(int i = 4; i >= 1; i--)
+		{
+			data[i] = (byte)(light % 256);
+			light /= 256;
+		}
+	}
+	
+	public void setUltrasonicSensorData(int ultra)
+	{
+		for(int i = 8; i >= 5; i--)
+		{
+			data[i] = (byte)(ultra % 256);
+			ultra /= 256;
+		}
+	}
+	
+	public void setSoundSensorData(int sound)
+	{
+		for(int i = 12; i >= 9; i--)
+		{
+			data[i] = (byte)(sound % 256);
+			sound /= 256;
+		}
 	}
 	
 	public byte calcChkSum()
@@ -174,6 +225,8 @@ public class DataPacket
 	public static final byte DEBUG_STEP_OVER = 4;
 	public static final byte DEBUG_INSPECT = 5;
 	public static final byte DEBUG_RESET = 6;
+	public static final byte DEBUG_OFF = 7;
+	public static final byte DEBUG_STOP = 8;
 	
 	public static final byte ACKNOWLEDGE_RECEIVED = 0;
 	public static final byte ACKNOWLEDGE_SENT = 1;
