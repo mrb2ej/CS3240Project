@@ -21,6 +21,7 @@ public class DebuggerGUI extends javax.swing.JFrame {
 
 	private JMenuItem helpMenuItem;
 	private JMenu jMenu5;
+	private JButton turnOffDebugMode;
 	private JButton stopButton;
 	private JButton stepButton;
 	private JMenuItem deleteMenuItem;
@@ -64,6 +65,8 @@ public class DebuggerGUI extends javax.swing.JFrame {
 		try {
 			{
 				getContentPane().setLayout(null);
+				this.setLocationByPlatform(true);
+				this.setLocation(new java.awt.Point(500, 0));
 				{
 					stepButton = new JButton();
 					getContentPane().add(stepButton);
@@ -86,8 +89,19 @@ public class DebuggerGUI extends javax.swing.JFrame {
 						}
 					});
 				}
+				{
+					turnOffDebugMode = new JButton();
+					getContentPane().add(turnOffDebugMode);
+					turnOffDebugMode.setText("Turn Off Debug Mode");
+					turnOffDebugMode.setBounds(189, 172, 202, 35);
+					turnOffDebugMode.addMouseListener(new MouseAdapter() {
+						public void mouseClicked(MouseEvent evt) {
+							turnOffDebugModeButtonMouseClicked(evt);
+						}
+					});
+				}
 			}
-			this.setSize(412, 308);
+			this.setSize(534, 359);
 			{
 				jMenuBar1 = new JMenuBar();
 				setJMenuBar(jMenuBar1);
@@ -181,6 +195,11 @@ public class DebuggerGUI extends javax.swing.JFrame {
 	
 	private void stopButtonMouseClicked(MouseEvent evt) {
 		controller.stop();
+	}
+	
+	private void turnOffDebugModeButtonMouseClicked(MouseEvent evt) {
+		controller.turnOffDebugMode();
+		this.dispose();
 	}
 
 }

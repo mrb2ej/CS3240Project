@@ -24,6 +24,10 @@ public class DebuggerGUIController {
 		communicator.stopDebugger();
 	}
 	
+	public void turnOffDebugMode(){
+		communicator.turnOffDebugMode();
+	}
+	
 	
 	
 }
