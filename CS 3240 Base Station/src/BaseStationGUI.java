@@ -86,8 +86,14 @@ public class BaseStationGUI extends javax.swing.JFrame {
 			{
 				sensorDataPanel = new JPanel();
 				getContentPane().add(sensorDataPanel);
-				sensorDataPanel.setBounds(12, 12, 170, 200);
+				sensorDataPanel.setBounds(12, 12, 228, 200);
 				sensorDataPanel.setLayout(null);
+				{
+					lightData = new JLabel();
+					sensorDataPanel.add(lightData);
+					lightData.setText("N/A");
+					lightData.setBounds(114, 33, 106, 16);
+				}
 				{
 					lightSensorLabel = new JLabel();
 					sensorDataPanel.add(lightSensorLabel);
@@ -101,16 +107,10 @@ public class BaseStationGUI extends javax.swing.JFrame {
 					locationLabel.setBounds(28, 145, 79, 16);
 				}
 				{
-					lightData = new JLabel();
-					sensorDataPanel.add(lightData);
-					lightData.setText("N/A");
-					lightData.setBounds(114, 33, 45, 16);
-				}
-				{
 					soundData = new JLabel();
 					sensorDataPanel.add(soundData);
 					soundData.setText("N/A");
-					soundData.setBounds(113, 61, 40, 16);
+					soundData.setBounds(113, 61, 107, 16);
 				}
 				{
 					soundSensorLabel = new JLabel();
@@ -122,7 +122,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 					ultrasonicData = new JLabel();
 					sensorDataPanel.add(ultrasonicData);
 					ultrasonicData.setText("N/A");
-					ultrasonicData.setBounds(112, 89, 41, 16);
+					ultrasonicData.setBounds(112, 89, 108, 16);
 				}
 				{
 					ultrasonicSensorLabel = new JLabel();
@@ -134,7 +134,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 					touchData = new JLabel();
 					sensorDataPanel.add(touchData);
 					touchData.setText("N/A");
-					touchData.setBounds(111, 117, 42, 16);
+					touchData.setBounds(111, 117, 109, 16);
 				}
 				{
 					touchSensorLabel = new JLabel();
@@ -146,7 +146,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 					LocationData = new JLabel();
 					sensorDataPanel.add(LocationData);
 					LocationData.setText("N/A");
-					LocationData.setBounds(113, 145, 40, 16);
+					LocationData.setBounds(113, 145, 107, 16);
 				}
 				{
 					bluetoothLabel = new JLabel();
@@ -158,7 +158,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 					bluetoothData = new JLabel();
 					sensorDataPanel.add(bluetoothData);
 					bluetoothData.setText("N/A");
-					bluetoothData.setBounds(113, 173, 40, 16);
+					bluetoothData.setBounds(113, 173, 107, 16);
 				}
 				{
 					sensorPanelLabel = new JLabel();
@@ -292,19 +292,19 @@ public class BaseStationGUI extends javax.swing.JFrame {
 
 	
 	public void setTouchDataText(String data){
-		touchData.setText(data);
+		touchData.setText("N/A");
 	}
 	
 	public void setSoundDataText(String data){
-		soundData.setText(data);
+		soundData.setText("N/A");
 	}	
 	
 	public void setLightDataText(String data){
-		lightData.setText(data);
+		lightData.setText("N/A");
 	}
 	
 	public void setUltrasonicDataText(String data){
-		ultrasonicData.setText(data);
+		ultrasonicData.setText("N/A");
 	}
 	
 	
