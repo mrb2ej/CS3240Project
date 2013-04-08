@@ -1,23 +1,20 @@
-
+package DebuggerTool;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
-
 /**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
-*/
+ * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
+ * Builder, which is free for non-commercial use. If Jigloo is being used
+ * commercially (ie, by a corporation, company or business for any purpose
+ * whatever) then you should purchase a license for each developer using Jigloo.
+ * Please visit www.cloudgarden.com for details. Use of Jigloo implies
+ * acceptance of these licensing terms. A COMMERCIAL LICENSE HAS NOT BEEN
+ * PURCHASED FOR THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED LEGALLY FOR
+ * ANY CORPORATE OR COMMERCIAL PURPOSE.
+ */
 public class DebuggerGUI extends javax.swing.JFrame {
 
 	private JMenuItem helpMenuItem;
@@ -41,8 +38,9 @@ public class DebuggerGUI extends javax.swing.JFrame {
 	private static DebuggerGUIController controller;
 
 	/**
-	* Auto-generated main method to display this JFrame
-	*/
+	 * Auto-generated main method to display this JFrame
+	 */
+	
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -53,12 +51,12 @@ public class DebuggerGUI extends javax.swing.JFrame {
 			}
 		});
 	}
-	
+
 	public DebuggerGUI() {
 		super();
 		initGUI();
 	}
-	
+
 	private void initGUI() {
 		try {
 			{
@@ -162,8 +160,8 @@ public class DebuggerGUI extends javax.swing.JFrame {
 			e.printStackTrace();
 		}
 	}
-	
-	private void stepButtonMouseClicked(MouseEvent evt){
+
+	private void stepButtonMouseClicked(MouseEvent evt) {
 		controller.step();
 	}
 

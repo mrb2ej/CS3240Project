@@ -1,3 +1,4 @@
+package DebuggerTool;
 public class DataPacket
 {
 	byte opcode;

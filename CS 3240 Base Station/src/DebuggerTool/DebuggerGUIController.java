@@ -1,3 +1,4 @@
+package DebuggerTool;
 public class DebuggerGUIController {
 
 	private DebuggerGUI myGUI;

@@ -1,3 +1,4 @@
+package BaseStation;
 public class DataPacket
 {
 	byte opcode;

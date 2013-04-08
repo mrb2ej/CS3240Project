@@ -1,3 +1,4 @@
+package BaseStation;
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -29,6 +30,7 @@ import javax.swing.text.DefaultCaret;
 public class BaseStationGUI extends javax.swing.JFrame {
 	private JLabel lightSensorLabel;
 	private JLabel touchData;
+	private JButton debugButton;
 	private JButton stopButton;
 	private JButton terminateButton;
 	private JLabel speed;
@@ -280,6 +282,17 @@ public class BaseStationGUI extends javax.swing.JFrame {
 					}
 				});
 			}
+			{
+				debugButton = new JButton();
+				getContentPane().add(debugButton);
+				debugButton.setText("Debug");
+				debugButton.setBounds(246, 162, 107, 23);
+				debugButton.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent evt) {
+						debugButtonMouseClicked(evt);
+					}
+				});
+			}
 			pack();
 			this.setSize(585, 435);
 		} catch (Exception e) {
@@ -335,6 +348,10 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	
 	private void stopButtonMouseClicked(MouseEvent evt) {
 		controller.stopRobot();
+	}
+	
+	private void debugButtonMouseClicked(MouseEvent evt) {
+		controller.launchDebugger();
 	}
 
 }

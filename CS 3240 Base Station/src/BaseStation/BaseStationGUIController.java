@@ -1,4 +1,7 @@
+package BaseStation;
 import java.awt.event.KeyEvent;
+
+import DebuggerTool.*;
 
 public class BaseStationGUIController {
 
@@ -167,6 +170,11 @@ public class BaseStationGUIController {
 		myGUI.setUltrasonicDataText("" + telemData.getUltrasonicSensorData());
 		
 		return true;
+	}
+	
+	public void launchDebugger(){
+		DebuggerGUI.main(null);
+		System.out.println("DEBUGGER LAUNCHED");
 	}
 	
 	
