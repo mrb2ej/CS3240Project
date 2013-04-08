@@ -92,6 +92,30 @@ public class RobotCommunicator {
 		
 	}
 	
+	public NXTConnector getConnection(){
+		return conn;
+	}
+	
+	public boolean sendDataPacketToRobot(DataPacket packet){
+		return sendDataToRobot(packet.getAsByteArray());
+	}
+	
+	public void step(){
+		
+		// Create array and initialize all data to zero
+		byte[] byteArray = new byte[PACKET_DATA_REGION_SIZE];
+		for (int i = 0; i < byteArray.length; i++) {
+			byteArray[i] = 0;
+		}
+						
+		byteArray[OPCODE_REGION] = DataPacket.DEBUG_STEP;
+		
+		DataPacket packet = new DataPacket(DataPacket.OP_DEBUGGER_COMMAND, byteArray);
+		sendDataPacketToRobot(packet);
+		
+		
+	}
+	
 		
 	private boolean sendDataToRobot(byte[] message){
 		

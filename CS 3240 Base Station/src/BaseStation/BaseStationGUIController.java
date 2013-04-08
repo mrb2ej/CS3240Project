@@ -173,7 +173,7 @@ public class BaseStationGUIController {
 	}
 	
 	public void launchDebugger(){
-		DebuggerGUI.main(null);
+		DebuggerGUI.main(null, myCommunicator);
 		System.out.println("DEBUGGER LAUNCHED");
 	}
 	

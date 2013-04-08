@@ -305,19 +305,19 @@ public class BaseStationGUI extends javax.swing.JFrame {
 
 	
 	public void setTouchDataText(String data){
-		touchData.setText("N/A");
+		touchData.setText(data);
 	}
 	
 	public void setSoundDataText(String data){
-		soundData.setText("N/A");
+		soundData.setText(data);
 	}	
 	
 	public void setLightDataText(String data){
-		lightData.setText("N/A");
+		lightData.setText(data);
 	}
 	
 	public void setUltrasonicDataText(String data){
-		ultrasonicData.setText("N/A");
+		ultrasonicData.setText(data);
 	}
 	
 	

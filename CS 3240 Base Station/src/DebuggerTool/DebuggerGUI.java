@@ -5,6 +5,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.*;
 
+import BaseStation.RobotCommunicator;
+
 /**
  * This code was edited or generated using CloudGarden's Jigloo SWT/Swing GUI
  * Builder, which is free for non-commercial use. If Jigloo is being used
@@ -37,17 +39,17 @@ public class DebuggerGUI extends javax.swing.JFrame {
 	private JMenuBar jMenuBar1;
 	private static DebuggerGUIController controller;
 
-	/**
-	 * Auto-generated main method to display this JFrame
-	 */
 	
-	public static void main(String[] args) {
+	/*
+	 * This main is a mess. We should probably rework this later
+	 */
+	public static void main(String[] args, final RobotCommunicator comm) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				DebuggerGUI inst = new DebuggerGUI();
 				inst.setLocationRelativeTo(null);
 				inst.setVisible(true);
-				controller = new DebuggerGUIController(inst);
+				controller = new DebuggerGUIController(inst, comm);
 			}
 		});
 	}
