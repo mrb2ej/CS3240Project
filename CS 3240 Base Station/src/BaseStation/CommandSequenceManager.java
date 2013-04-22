@@ -81,8 +81,8 @@ public class CommandSequenceManager {
 	//	
 	//	return true;
 		try {
-			for (Datapacket d : commandList) {
-				out.write(d.getMovementCommandName());
+			for (int i = 0; i < commandSequence.size(); i++) {
+				out.write(commandSequence.getCommand(i).getAsByteArray());
 			}
 			out.flush();
 			return true;
@@ -97,18 +97,11 @@ public class CommandSequenceManager {
 	 * Load a saved command sequence from a file on disk
 	 */
 	public boolean loadSequenceFromFile(String filepath){
-				Scanner what;
+		Scanner what;
 		try {
 			what = new Scanner(file);
-			int size = 0;
-			while(what.hasNextLine(){
-				size++;
-				what.nextLine();
-			}
-			String[] output = new String[size];
-			what = new Scanner(file);
 			while (what.hasNextLine()) {
-				output[i] = what.nextLine();
+				commandSequence.addCommandToSequence(Byte.parseByte(what.nextLine()));
 			}
 			return true;
 		} catch (FileNotFoundException e) {
