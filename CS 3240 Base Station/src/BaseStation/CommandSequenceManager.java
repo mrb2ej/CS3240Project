@@ -84,7 +84,7 @@ public class CommandSequenceManager {
 			for (int i = 0; i < commandSequence.size(); i++) {
 				out.write(commandSequence.getCommand(i).getAsByteArray());
 			}
-			out.flush();
+			out.close();
 			return true;
 		} catch (IOException e) {
 			e1.printStackTrace();
