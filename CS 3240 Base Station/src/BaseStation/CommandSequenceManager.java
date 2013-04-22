@@ -101,11 +101,10 @@ public class CommandSequenceManager {
 		try {
 			what = new Scanner(file);
 			while (what.hasNextLine()) {
-				commandSequence.addCommandToSequence(Byte.parseByte(what.nextLine()));
+				commandSequence.addCommandToSequence(new DataPacket(Byte.parseByte(what.nextLine())));
 			}
 			return true;
 		} catch (FileNotFoundException e) {
-			String[] thing = {""}; // this shouldn't happen
 			return false;
 		}
 	}
