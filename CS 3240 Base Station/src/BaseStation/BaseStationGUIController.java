@@ -60,6 +60,8 @@ public class BaseStationGUIController {
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_STOP_FORWARD);
 					movementKeysUp[UP_KEY] = true;
+					// dim up arrow
+					this.myGUI.dimArrow(UP_KEY);
 				}
 			} else {
 				if (movementKeysUp[UP_KEY]) {
@@ -67,6 +69,8 @@ public class BaseStationGUIController {
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_FORWARD);
 					movementKeysUp[UP_KEY] = false;
+					// light up arrow
+					this.myGUI.lightArrow(UP_KEY);
 				}
 			}
 			break;
@@ -78,6 +82,8 @@ public class BaseStationGUIController {
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_STOP_BACKWARD);
 					movementKeysUp[DOWN_KEY] = true;
+					// dim down arrow
+					this.myGUI.dimArrow(DOWN_KEY);
 				}
 			} else {
 				if (movementKeysUp[DOWN_KEY]) {
@@ -85,6 +91,8 @@ public class BaseStationGUIController {
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_BACKWARD);
 					movementKeysUp[DOWN_KEY] = false;
+					// light down arrow
+					this.myGUI.lightArrow(DOWN_KEY);
 				}
 			}
 			break;
@@ -96,6 +104,8 @@ public class BaseStationGUIController {
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_STOP_LEFT);
 					movementKeysUp[LEFT_KEY] = true;
+					// dim left arrow
+					this.myGUI.dimArrow(LEFT_KEY);
 				}
 			} else {
 				if (movementKeysUp[LEFT_KEY]) {
@@ -103,6 +113,8 @@ public class BaseStationGUIController {
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_LEFT);
 					movementKeysUp[LEFT_KEY] = false;
+					// light left arrow
+					this.myGUI.lightArrow(LEFT_KEY);
 				}
 			}
 			break;
@@ -114,6 +126,8 @@ public class BaseStationGUIController {
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_STOP_RIGHT);
 					movementKeysUp[RIGHT_KEY] = true;
+					// dim right arrow
+					this.myGUI.dimArrow(RIGHT_KEY);
 				}
 			} else {
 				if (movementKeysUp[RIGHT_KEY]) {
@@ -121,6 +135,8 @@ public class BaseStationGUIController {
 					currCommand = myCommunicator
 							.sendMovementCommand(DataPacket.MOTOR_RIGHT);
 					movementKeysUp[RIGHT_KEY] = false;
+					// light right arrow
+					this.myGUI.lightArrow(RIGHT_KEY);
 				}
 			}
 			break;

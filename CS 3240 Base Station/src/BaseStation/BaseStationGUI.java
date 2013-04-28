@@ -1,5 +1,6 @@
 package BaseStation;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
@@ -45,7 +46,6 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	private JLabel bluetoothData;
 	private JLabel bluetoothLabel;
 	private JPanel sensorDataPanel;
-	private JLabel LocationData;
 	private JLabel ultrasonicSensorLabel;
 	private JLabel ultrasonicData;
 	private JLabel soundData;
@@ -54,7 +54,6 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	private JTextArea commandSequenceLog;
 	private JButton uploadSequenceButton;
 	private JButton recordSequenceButton;
-	private JLabel locationLabel;
 	private JLabel touchSensorLabel;
 	private JLabel soundSensorLabel;
 	private static BaseStationGUIController controller;
@@ -103,12 +102,6 @@ public class BaseStationGUI extends javax.swing.JFrame {
 					lightSensorLabel.setBounds(28, 33, 79, 16);
 				}
 				{
-					locationLabel = new JLabel();
-					sensorDataPanel.add(locationLabel);
-					locationLabel.setText("Location:");
-					locationLabel.setBounds(28, 145, 79, 16);
-				}
-				{
 					soundData = new JLabel();
 					sensorDataPanel.add(soundData);
 					soundData.setText("N/A");
@@ -145,22 +138,16 @@ public class BaseStationGUI extends javax.swing.JFrame {
 					touchSensorLabel.setBounds(28, 117, 77, 16);
 				}
 				{
-					LocationData = new JLabel();
-					sensorDataPanel.add(LocationData);
-					LocationData.setText("N/A");
-					LocationData.setBounds(113, 145, 107, 16);
-				}
-				{
 					bluetoothLabel = new JLabel();
 					sensorDataPanel.add(bluetoothLabel);
 					bluetoothLabel.setText("Bluetooth:");
-					bluetoothLabel.setBounds(28, 173, 73, 16);
+					bluetoothLabel.setBounds(28, 145, 73, 16);
 				}
 				{
 					bluetoothData = new JLabel();
 					sensorDataPanel.add(bluetoothData);
 					bluetoothData.setText("N/A");
-					bluetoothData.setBounds(113, 173, 107, 16);
+					bluetoothData.setBounds(113, 145, 107, 16);
 				}
 				{
 					sensorPanelLabel = new JLabel();
@@ -185,6 +172,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 				getContentPane().add(recordSequenceButton);
 				recordSequenceButton.setText("Record Sequence");
 				recordSequenceButton.setBounds(246, 251, 157, 23);
+			
 			}
 			{
 				uploadSequenceButton = new JButton();
@@ -320,7 +308,47 @@ public class BaseStationGUI extends javax.swing.JFrame {
 		ultrasonicData.setText(data);
 	}
 	
+	/**
+	 * Function that determines which arrow to light up green
+	 * @param arrowNum Int that designates arrow to light up
+	 */
+	public void lightArrow(int arrowNum){
+		switch (arrowNum){
+		case 0:
+			upArrowLabel.setForeground(Color.GREEN);
+			break;
+		case 1:
+			downArrowLabel.setForeground(Color.GREEN);
+			break;
+		case 2:
+			leftArrowLabel.setForeground(Color.GREEN);
+			break;
+		case 3:
+			rightArrowLabel.setForeground(Color.GREEN);
+			break;
+		}
+	}
 	
+	/**
+	 * Function that dims an arrow back to black
+	 * @param arrowNum Int that determines which arrow to dim
+	 */
+	public void dimArrow(int arrowNum){
+		switch (arrowNum){
+		case 0:
+			upArrowLabel.setForeground(Color.BLACK);
+			break;
+		case 1:
+			downArrowLabel.setForeground(Color.BLACK);
+			break;
+		case 2:
+			leftArrowLabel.setForeground(Color.BLACK);
+			break;
+		case 3:
+			rightArrowLabel.setForeground(Color.BLACK);
+			break;
+		}
+	}
 	
 	
 	
