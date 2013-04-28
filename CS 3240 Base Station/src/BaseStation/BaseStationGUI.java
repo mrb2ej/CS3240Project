@@ -173,6 +173,11 @@ public class BaseStationGUI extends javax.swing.JFrame {
 				getContentPane().add(recordSequenceButton);
 				recordSequenceButton.setText("Record Sequence");
 				recordSequenceButton.setBounds(246, 251, 157, 23);
+				recordSequenceButton.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent evt) {
+						recordSequenceButtonMouseClicked(evt);
+					}
+				});
 			
 			}
 			{
@@ -180,6 +185,11 @@ public class BaseStationGUI extends javax.swing.JFrame {
 				getContentPane().add(uploadSequenceButton);
 				uploadSequenceButton.setText("Upload Sequence");
 				uploadSequenceButton.setBounds(414, 251, 144, 23);
+				uploadSequenceButton.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent evt) {
+						uploadSequenceButtonMouseClicked(evt);
+					}
+				});
 			}
 			{
 				jScrollPane1 = new JScrollPane();
@@ -403,6 +413,14 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	
 	private void runSequenceButtonMouseClicked(MouseEvent evt) {
 		controller.executeSequence();
+	}
+	
+	private void recordSequenceButtonMouseClicked(MouseEvent evt) {
+		//DO SOMETHING
+	}
+	
+	private void uploadSequenceButtonMouseClicked(MouseEvent evt) {
+		//DO SOMETHING
 	}
 
 }
