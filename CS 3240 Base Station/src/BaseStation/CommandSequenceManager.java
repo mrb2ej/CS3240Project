@@ -95,7 +95,6 @@ public class CommandSequenceManager {
 			e.printStackTrace();
 			return false;
 		}
-		return true;
 	}
 	
 	
@@ -135,6 +134,8 @@ public class CommandSequenceManager {
 		    } catch (IOException ioe) {
 		      return false;
 		    }
-		
+	
+		return true;
+
 	}
 }
