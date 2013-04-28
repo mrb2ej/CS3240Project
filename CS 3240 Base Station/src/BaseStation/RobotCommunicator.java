@@ -162,7 +162,7 @@ public class RobotCommunicator {
 	}
 	
 		
-	public boolean sendDataToRobot(byte[] message){
+	private boolean sendDataToRobot(byte[] message){
 		
 		OutputStream outStream = conn.getOutputStream();
 		
