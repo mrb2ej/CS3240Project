@@ -202,7 +202,7 @@ public class BaseStationGUIController {
 		
 	}
 	
-		public void executeSequence() {
+	public void executeSequence() {
 		if(myCommandSequenceManager.getCommandSequence().size()>0) {
 			int i = 0;
 			long offset = myCommandSequenceManager.getCommandSequence().getTime(0);
