@@ -16,13 +16,24 @@ import java.util.ArrayList;
 public class CommandSequence {
 	
 	private ArrayList<DataPacket> commandList = new ArrayList<DataPacket>();
+	private ArrayList<Long> timeList = newArrayList<Long>();
 	
 	public CommandSequence(){
 		
 	}
 	
 	public boolean addCommandToSequence(DataPacket command){
+		timeList.add(System.currentTimeMillis());
 		return commandList.add(command);
+	}
+	
+	public void endCommandTimer() {
+		if(size()>0) {
+			long temp = timeList.get(size()-1);
+			temp = System.currentTimeMillis() - temp;
+			timeList.remove(size()-1);
+			timeList.add(temp);
+		}
 	}
 	
 	public DataPacket getCommand(int index){
@@ -32,7 +43,4 @@ public class CommandSequence {
 	public int size(){
 		return commandList.size();
 	}
-	
-	
-
 }
