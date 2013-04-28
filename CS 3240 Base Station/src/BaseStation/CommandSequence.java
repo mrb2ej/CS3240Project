@@ -27,7 +27,15 @@ public class CommandSequence {
 		return commandList.add(command);
 	}
 	
-	public void endCommandTimer() {
+	public void clearTime() {
+		timeList.clear();
+	}
+	
+	public Boolean addTime(long time) {
+		return timeList.add(time);
+	}
+	
+	public void endCommandTimer() {	//this is important to record the correct time, call after the last recorded command is finished
 		if(size()>0) {
 			long temp = timeList.get(size()-1);
 			temp = System.currentTimeMillis() - temp;
@@ -46,5 +54,10 @@ public class CommandSequence {
 	
 	public int size(){
 		return commandList.size();
+	}
+	
+	public void clear() {
+		commandList.clear();
+		timeList.clear();
 	}
 }
