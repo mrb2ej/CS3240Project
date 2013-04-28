@@ -50,6 +50,7 @@ public class DebuggerGUI extends javax.swing.JFrame {
 			public void run() {
 				DebuggerGUI inst = new DebuggerGUI();
 				inst.setLocationRelativeTo(null);
+				inst.setLocation(900, 200);
 				inst.setVisible(true);
 				controller = new DebuggerGUIController(inst, comm);
 			}

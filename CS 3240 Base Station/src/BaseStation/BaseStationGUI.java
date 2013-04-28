@@ -254,6 +254,7 @@ public class BaseStationGUI extends javax.swing.JFrame {
 				terminateButton.setText("Terminate");
 				terminateButton.setBounds(246, 85, 107, 48);
 				terminateButton.setBackground(new java.awt.Color(255,0,0));
+				terminateButton.setVisible(false);
 				terminateButton.addMouseListener(new MouseAdapter() {
 					public void mouseClicked(MouseEvent evt) {
 						terminateButtonMouseClicked(evt);
