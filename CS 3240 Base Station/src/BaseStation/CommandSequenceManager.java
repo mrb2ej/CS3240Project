@@ -28,7 +28,9 @@ public class CommandSequenceManager {
 	public CommandSequenceManager(){
 	}
 	
-	
+	public CommandSequence getCommandSequence() {
+		return commandSequence;
+	}
 	
 	/*
 	 * Add the given packet to the command sequence log
