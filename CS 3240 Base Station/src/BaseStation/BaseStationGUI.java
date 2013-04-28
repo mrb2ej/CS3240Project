@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 import javax.swing.WindowConstants;
 import javax.swing.SwingUtilities;
@@ -31,6 +32,7 @@ import javax.swing.text.DefaultCaret;
 public class BaseStationGUI extends javax.swing.JFrame {
 	private JLabel lightSensorLabel;
 	private JLabel touchData;
+	private JTextField sequenceName;
 	private JButton runSequence;
 	private JButton debugButton;
 	private JButton stopButton;
@@ -306,6 +308,12 @@ public class BaseStationGUI extends javax.swing.JFrame {
 					}
 				});
 			}
+			{
+				sequenceName = new JTextField();
+				getContentPane().add(sequenceName);
+				sequenceName.setText("Sequence to Upload");
+				sequenceName.setBounds(414, 217, 143, 23);
+			}
 			pack();
 			this.setSize(585, 435);
 		} catch (Exception e) {
@@ -421,6 +429,10 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	
 	private void uploadSequenceButtonMouseClicked(MouseEvent evt) {
 		//DO SOMETHING
+	}
+	
+	private String getUploadSequenceName(){
+		return sequenceName.getText();
 	}
 
 }
