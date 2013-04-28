@@ -239,12 +239,14 @@ public class BaseStationGUI extends javax.swing.JFrame {
 				getContentPane().add(speedLabel);
 				speedLabel.setText("Speed (%):");
 				speedLabel.setBounds(403, 174, 59, 16);
+				speedLabel.setVisible(false);
 			}
 			{
 				speed = new JLabel();
 				getContentPane().add(speed);
 				speed.setText("0");
 				speed.setBounds(474, 174, 52, 16);
+				speed.setVisible(false);
 			}
 			{
 				terminateButton = new JButton();
@@ -306,6 +308,10 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	
 	public void setUltrasonicDataText(String data){
 		ultrasonicData.setText(data);
+	}
+	
+	public void setBlueToothLabel(String data){
+		bluetoothData.setText(data);
 	}
 	
 	/**

@@ -193,6 +193,15 @@ public class BaseStationGUIController {
 		System.out.println("DEBUGGER LAUNCHED");
 	}
 	
+	public void setBlueToothStatus(boolean on){
+		if (on){
+			myGUI.setBlueToothLabel("On");
+		}else{
+			myGUI.setBlueToothLabel("Off");
+		}
+		
+	}
+	
 	
 
 }

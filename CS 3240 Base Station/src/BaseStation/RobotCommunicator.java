@@ -26,19 +26,35 @@ public class RobotCommunicator {
 
 	public RobotCommunicator(BaseStationGUIController guiController) {
 
-		conn = new NXTConnector();
-		boolean connected = conn.connectTo();
-		if (!connected) {
-			//Can't connect
-			System.out.println("ERROR: CANNOT CONNECT TO ROBOT");
+		int x = 0;
+		
+		while (x < 5){
+			conn = new NXTConnector();
+			boolean connected = conn.connectTo();
 			
-			// TODO: Attempt to reconnect
+			if (!connected) {
+				//Can't connect
+				System.out.println("ERROR: CANNOT CONNECT TO ROBOT");
+				
+				guiController.setBlueToothStatus(false);
+				x++;	
+				
+			}else{
+				System.out.println("CONNECTED! ATTEMPTING TO GET INPUT STREAM");
+				break;
+			}
 			
-			return;
-		}else{
-			System.out.println("CONNECTED! ATTEMPTING TO GET INPUT STREAM");
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
 		}
-	
+		
+		if (conn == null){
+			return;
+		}
 		
 		// Setup the telemetry data manager that will handle all input from the robot
 		inStream = conn.getInputStream();
@@ -46,6 +62,7 @@ public class RobotCommunicator {
 		if(inStream != null){
 			System.out.println("RECEIVED INPUT STREAM FROM ROBOT");
 			telemDataManager = new TelemetryDataManager(inStream, guiController);
+			guiController.setBlueToothStatus(true);
 		}else{
 			System.out.println("ERROR: CANNOT GET INPUT STREAM FROM ROBOT");
 		}
