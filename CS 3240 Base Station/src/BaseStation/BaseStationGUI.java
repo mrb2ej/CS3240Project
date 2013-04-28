@@ -31,6 +31,7 @@ import javax.swing.text.DefaultCaret;
 public class BaseStationGUI extends javax.swing.JFrame {
 	private JLabel lightSensorLabel;
 	private JLabel touchData;
+	private JButton runSequence;
 	private JButton debugButton;
 	private JButton stopButton;
 	private JButton terminateButton;
@@ -284,6 +285,17 @@ public class BaseStationGUI extends javax.swing.JFrame {
 					}
 				});
 			}
+			{
+				runSequence = new JButton();
+				getContentPane().add(runSequence);
+				runSequence.setText("Run Sequence");
+				runSequence.setBounds(150, 251, 89, 23);
+				runSequence.addMouseListener(new MouseAdapter() {
+					public void mouseClicked(MouseEvent evt) {
+						runSequenceButtonMouseClicked(evt);
+					}
+				});
+			}
 			pack();
 			this.setSize(585, 435);
 		} catch (Exception e) {
@@ -387,6 +399,10 @@ public class BaseStationGUI extends javax.swing.JFrame {
 	
 	private void debugButtonMouseClicked(MouseEvent evt) {
 		controller.launchDebugger();
+	}
+	
+	private void runSequenceButtonMouseClicked(MouseEvent evt) {
+		controller.executeSequence();
 	}
 
 }
