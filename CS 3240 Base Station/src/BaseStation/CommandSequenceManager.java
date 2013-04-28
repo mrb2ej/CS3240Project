@@ -1,7 +1,12 @@
 package BaseStation;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /*
  * This will manage the command sequences 
@@ -13,11 +18,18 @@ import java.io.IOException;
  */
 
 public class CommandSequenceManager {
+	
+	private File file;
+	BufferedWriter out;
 
 	CommandSequence commandSequence = new CommandSequence();
 	
 	public CommandSequenceManager(){
-		
+		new File("C:/deleteme/").mkdir();
+		file = new File("C:/deleteme/" + "log.txt");
+		file.delete();
+		file.createNewFile();
+		BufferedWriter out = new BufferedWriter(new FileWriter(file));
 	}
 	
 	
@@ -36,38 +48,48 @@ public class CommandSequenceManager {
 	@SuppressWarnings("resource")
 	public boolean saveSequenceToFile(String filepath){
 		
-		FileOutputStream outputStream;
+	//	FileOutputStream outputStream;
 		
 		
 		// Open the file output stream
-		try {
-			outputStream = new FileOutputStream(filepath);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			return false;
-		}
+	//	try {
+	//		outputStream = new FileOutputStream(filepath);
+	//	} catch (FileNotFoundException e) {
+	//		e.printStackTrace();
+	//		return false;
+	//	}
 		
 		
 		// Write the entire command list to a file
-		for(int i = 0; i < commandSequence.size(); i++){
-			try {
-				outputStream.write(commandSequence.getCommand(i).getAsByteArray());
-			} catch (IOException e) {
-				e.printStackTrace();
-				return false;
-			}
-		}
+	//	for(int i = 0; i < commandSequence.size(); i++){
+	//		try {
+	//			outputStream.write(commandSequence.getCommand(i).getAsByteArray());
+	//		} catch (IOException e) {
+	//			e.printStackTrace();
+	//			return false;
+	//		}
+	//	}
 		
 		
 		// Close the output stream
+	//	try {
+	//		outputStream.close();
+	//	} catch (IOException e) {
+	//		e.printStackTrace();
+	//		return false;
+	//	}
+	//	
+	//	return true;
 		try {
-			outputStream.close();
+			for (int i = 0; i < commandSequence.size(); i++) {
+				out.write(commandSequence.getCommand(i).getAsByteArray());
+			}
+			out.close();
+			return true;
 		} catch (IOException e) {
-			e.printStackTrace();
+			e1.printStackTrace();
 			return false;
 		}
-		
-		return true;
 	}
 	
 	
@@ -75,6 +97,15 @@ public class CommandSequenceManager {
 	 * Load a saved command sequence from a file on disk
 	 */
 	public boolean loadSequenceFromFile(String filepath){
-		return true;
+		Scanner what;
+		try {
+			what = new Scanner(file);
+			while (what.hasNextLine()) {
+				commandSequence.addCommandToSequence(new DataPacket(Byte.parseByte(what.nextLine())));
+			}
+			return true;
+		} catch (FileNotFoundException e) {
+			return false;
+		}
 	}
 }
