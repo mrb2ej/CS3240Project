@@ -39,6 +39,7 @@ public class DataPacket
 		checkSum = 0;
 	}
 	
+	// returns the DataPacket as an array of bytes
 	public byte[] getAsByteArray()
 	{
 		byte[] packet = new byte[15];
@@ -59,10 +60,14 @@ public class DataPacket
 	public int getLightSensorData()
 	{
 		int light = data[1];
+		if(light < 0) light += 256;
+		int toAdd = 0;
 		for(int i = 2; i < 5; i++)
 		{
 			light = light << 8;
-			light += data[i];
+			toAdd = data[i];
+			if(toAdd < 0) toAdd += 256;
+			light += toAdd;
 		}
 		return light;
 	}
@@ -70,10 +75,14 @@ public class DataPacket
 	public int getUltrasonicSensorData()
 	{
 		int ultra = data[5];
+		if(ultra < 0) ultra += 256;
+		int toAdd = 0;
 		for(int i = 6; i < 9; i++)
 		{
 			ultra = ultra << 8;
-			ultra += data[i];
+			toAdd = data[i];
+			if(toAdd < 0) toAdd += 256;
+			ultra += toAdd;
 		}
 		return ultra;
 	}
@@ -81,10 +90,14 @@ public class DataPacket
 	public int getSoundSensorData()
 	{
 		int sound = data[9];
+		if(sound < 0) sound += 256;
+		int toAdd = 0;
 		for(int i = 10; i < 13; i++)
 		{
 			sound = sound << 8;
-			sound += data[i];
+			toAdd = data[i];
+			if(toAdd < 0) toAdd += 256;
+			sound += toAdd;
 		}
 		return sound;
 	}
@@ -103,6 +116,7 @@ public class DataPacket
 	
 	public void setLightSensorData(int light)
 	{
+		// 4 bytes to an int
 		for(int i = 4; i >= 1; i--)
 		{
 			data[i] = (byte)(light % 256);
@@ -112,6 +126,7 @@ public class DataPacket
 	
 	public void setUltrasonicSensorData(int ultra)
 	{
+		// 4 bytes to an int
 		for(int i = 8; i >= 5; i--)
 		{
 			data[i] = (byte)(ultra % 256);
@@ -121,6 +136,7 @@ public class DataPacket
 	
 	public void setSoundSensorData(int sound)
 	{
+		// 4 bytes to an int
 		for(int i = 12; i >= 9; i--)
 		{
 			data[i] = (byte)(sound % 256);
@@ -138,6 +154,7 @@ public class DataPacket
 		return total;
 	}
 	
+	// get the number of 1's in the binary representation of the byte
 	private byte getOnes(byte in)
 	{
 		byte total = 0;
