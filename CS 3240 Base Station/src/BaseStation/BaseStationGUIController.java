@@ -202,6 +202,18 @@ public class BaseStationGUIController {
 		
 	}
 	
-	
+		public void executeSequence() {
+		if(myCommandSequenceManager.getCommandSequence().size()>0) {
+			int i = 0;
+			long offset = myCommandSequenceManager.getCommandSequence().getTime(0);
+			long start = System.currentTimeMillis();
+			while (i<myCommandSequenceManager.getCommandSequence().size()) {
+				if(System.currentTimeMillis()-start > myCommandSequenceManager.getCommandSequence().getTime(i) - offset) {
+					myCommunicator.sendDataPacketToRobot(myCommandSequenceManager.getCommandSequence().getCommand(i));
+					i++;
+				}
+			}
+		}
+	}
 
 }
