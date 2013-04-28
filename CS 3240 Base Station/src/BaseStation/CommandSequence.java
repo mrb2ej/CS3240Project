@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class CommandSequence {
 	
 	private ArrayList<DataPacket> commandList = new ArrayList<DataPacket>();
-	private ArrayList<Long> timeList = newArrayList<Long>();
+	private ArrayList<Long> timeList = new ArrayList<Long>();
 	
 	public CommandSequence(){
 		
@@ -38,6 +38,10 @@ public class CommandSequence {
 	
 	public DataPacket getCommand(int index){
 		return commandList.get(index);
+	}
+	
+	public long getTime(int index){
+		return timeList.get(index);
 	}
 	
 	public int size(){
