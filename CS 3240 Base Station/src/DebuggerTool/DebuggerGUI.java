@@ -200,6 +200,7 @@ public class DebuggerGUI extends javax.swing.JFrame {
 	
 	private void turnOffDebugModeButtonMouseClicked(MouseEvent evt) {
 		controller.turnOffDebugMode();
+		controller.setDebugging(false);
 		this.dispose();
 	}
 

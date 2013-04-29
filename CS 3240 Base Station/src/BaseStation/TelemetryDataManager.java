@@ -19,6 +19,7 @@ public class TelemetryDataManager implements Runnable {
 	InputStream inStream;
 	BaseStationGUIController guiController;
 	Thread t; 
+	boolean debugging = false;
 	
 	private static final int DATA_PACKET_SIZE = 15;
 		
@@ -30,13 +31,22 @@ public class TelemetryDataManager implements Runnable {
 		t = new Thread(this);  
 		t.start(); 
 	}
+	
+	public void setDebugging(boolean debug){
+		debugging = debug;
+	}
 
 	@Override
 	public void run() {
-		int z = 0;
-		while (z == 0){
-			receiveCommand();
+		
+		while (true){
+			
+			while (!debugging){
+				receiveCommand();
+			}
+			
 		}
+		
 	}
 	
 	public DataPacket receiveCommand(){

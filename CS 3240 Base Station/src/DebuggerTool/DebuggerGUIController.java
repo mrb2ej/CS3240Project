@@ -28,6 +28,10 @@ public class DebuggerGUIController {
 		communicator.turnOffDebugMode();
 	}
 	
+	public void setDebugging(boolean debug){
+		communicator.setDebugging(debug);
+	}
+	
 	
 	
 }

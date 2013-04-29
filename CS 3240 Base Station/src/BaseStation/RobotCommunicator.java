@@ -183,6 +183,10 @@ public class RobotCommunicator {
 		return true;
 	}
 	
+	public void setDebugging(boolean debug){
+		telemDataManager.setDebugging(debug);
+	}
+	
 	
 	
 	
